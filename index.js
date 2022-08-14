@@ -1,6 +1,11 @@
 // TODO: Include packages needed for this application
-const inquirer = require('inquirer');
-const fs = require('fs'); 
+
+const inquirer = require("inquirer");
+const fs = require('fs');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Employee = require('./lib/Employee');
+const Intern = require('./lib/Intern');
 
 inquirer
 .prompt([
@@ -9,50 +14,9 @@ inquirer
             message: 'What is the title of the project?',
             name: 'title',
         },
-        {
-            type: 'input',
-            message: 'What is the description of the project?',
-            name: 'description',
-        },
-        {
-            type: 'input',
-            message: 'How to install your application?',
-            name: 'install',
-        },
-        {
-            type: 'input',
-            message: 'How to use your application?',
-            name: 'use',
-        },
-        {
-            type: 'input',
-            message: 'How to contribute for this project?',
-            name: 'contribute',
-        },
-        {
-            type: 'input',
-            message: 'How to test your application?',
-            name: 'test',
-        },
-        {
-            type: "checkbox",
-            message: "What is the license used for this project?",
-            choices: ["MIT", "BSD 3-clause Clear license", "Creative Commons Attribution 4.0", "GNU General Public License 3.0", "Do What The F*ck You Want To Public License", "Apache License 2.0"],
-            name: "license",
-        },
-        {
-            type: "input",
-            message: "What is your GitHub username?",
-            name: "username"
-        },
-        {
-            type: "input",
-            message: "What is your email address?",
-            name: "email"
-        },
     ])
     .then((response) =>
-        fs.writeFile("./dist/index.html", generate(response), err => {
+        fs.writeFile("./dist/index.html", response.toString(), err => {
             if (err) {
                 console.log('Error occured!');
             }
@@ -63,4 +27,4 @@ inquirer
     );
 
 // Function call to initialize app
-init();
+// init();
