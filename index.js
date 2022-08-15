@@ -6,8 +6,8 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Employee = require('./lib/Employee');
 const Intern = require('./lib/Intern');
+const generateHTML = require('./lib/htmlrender');
 const team = [];
-
 
 inquirer
 .prompt([
@@ -71,14 +71,14 @@ inquirer
                 team.push(intern);
             }
             else {
-                fs.writeFile("./dist/index.html", response2.toString(), err => {
+                fs.writeFile("./dist/index.html", generateHTML(response2), err => {
                     if (err) {
                         console.log('Error occured!');
                     }
                     
                 }); 
             }
-            fs.writeFile("./dist/index.html", response2.toString(), err => {
+            fs.writeFile("./dist/index.html", generateHTML(response2), err => {
                 if (err) {
                     console.log('Error occured!');
                 }
